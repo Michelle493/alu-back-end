@@ -16,7 +16,6 @@ import requests
 import sys
 
 
-
 def main():
     """Fetch data and dump a JSON mapping for the user."""
     if len(sys.argv) < 2:
