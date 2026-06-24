@@ -16,10 +16,12 @@ def main():
 
     base_url = "https://jsonplaceholder.typicode.com"
     reddit_user = requests.get(f"{base_url}/users/{user_id}").json()
+    print(reddit_user)
     todos = requests.get(f"{base_url}/todos", params={"userId": user_id}).json()
 
     username = reddit_user.get("username")
     filename = f"{user_id}.csv"
+    print(username, filename)
 
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
