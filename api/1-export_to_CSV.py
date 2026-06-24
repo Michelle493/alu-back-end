@@ -1,10 +1,4 @@
 #!/usr/bin/python3
-"""
-Module 1-export_to_CSV
-Exports all tasks for a given user to a CSV file: ``USER_ID.csv``.
-Format:
-"USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
-"""
 import csv
 import requests
 import sys
@@ -20,11 +14,11 @@ def main():
     except ValueError:
         sys.exit(0)
 
-    base = "https://jsonplaceholder.typicode.com"
-    user = requests.get(f"{base}/users/{user_id}").json()
-    todos = requests.get(f"{base}/todos", params={"userId": user_id}).json()
+    base_url = "https://jsonplaceholder.typicode.com"
+    reddit_user = requests.get(f"{base_url}/users/{user_id}").json()
+    todos = requests.get(f"{base_url}/todos", params={"userId": user_id}).json()
 
-    username = user.get("username")
+    username = reddit_user.get("username")
     filename = f"{user_id}.csv"
 
     with open(filename, "w", newline="", encoding="utf-8") as f:
